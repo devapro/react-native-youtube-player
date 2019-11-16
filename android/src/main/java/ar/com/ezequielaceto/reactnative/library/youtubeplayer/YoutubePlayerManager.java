@@ -18,6 +18,7 @@ public class YoutubePlayerManager extends ReactContextBaseJavaModule {
 
     private ReadableMap options;
     private String videoId;
+    private String key = YoutubePlayerPackage.YoutubePublicAPIKey;
 
     public YoutubePlayerManager(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -29,6 +30,11 @@ public class YoutubePlayerManager extends ReactContextBaseJavaModule {
         return "YoutubePlayerManager";
     }
 
+    @ReactMethod
+    public void setKey(final String key) {
+        this.key = key;
+    }
+    
     @ReactMethod
     public void play(final String videoId, final ReadableMap options) {
         Activity currentActivity = getCurrentActivity();
@@ -42,7 +48,7 @@ public class YoutubePlayerManager extends ReactContextBaseJavaModule {
         this.videoId = videoId;
         this.options = options;
 
-        Intent intent = YouTubeStandalonePlayer.createVideoIntent(currentActivity, YoutubePlayerPackage.YoutubePublicAPIKey, videoId, 0 , true, false);
+        Intent intent = YouTubeStandalonePlayer.createVideoIntent(currentActivity, key, videoId, 0 , true, false);
         currentActivity.startActivity(intent);
     }
 
