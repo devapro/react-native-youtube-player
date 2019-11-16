@@ -12,7 +12,9 @@ var RCTYoutubePlayerManagerExport = {
         console.log("YoutubePlayerManager.play is " + YoutubePlayerManager.play);
         YoutubePlayerManager.play(videoId, options);
     },
-
+    setKey: function(key) {
+        YoutubePlayerManager.setKey(key);
+    }
 };
 
 module.exports = RCTYoutubePlayerManagerExport;
